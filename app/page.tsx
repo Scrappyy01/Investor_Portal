@@ -1,102 +1,219 @@
+'use client';
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter();
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [clickedCard, setClickedCard] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  useEffect(() => {
+    // Trigger each card to appear one at a time with a delay
+    const timers = [
+      setTimeout(() => setVisibleCards([0]), 200),
+      setTimeout(() => setVisibleCards([0, 1]), 500),
+      setTimeout(() => setVisibleCards([0, 1, 2]), 800),
+    ];
+
+    return () => timers.forEach(timer => clearTimeout(timer));
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardIndex: number) => {
+    if (isTransitioning) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 30; // -15 to 15
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 30; // -15 to 15
+    setMousePosition({ x, y });
+    setHoveredCard(cardIndex);
+  };
+
+  const handleMouseLeave = () => {
+    if (isTransitioning) return;
+    setMousePosition({ x: 0, y: 0 });
+    setHoveredCard(null);
+  };
+
+  const handleCardClick = (e: React.MouseEvent, cardIndex: number) => {
+    e.preventDefault();
+    setIsTransitioning(true);
+    setClickedCard(cardIndex);
+    
+    // Navigate after animation completes
+    setTimeout(() => {
+      router.push('/login');
+    }, 1800);
+  };
+
+  return (
+    <div className="bg-white">
+      {/* Fixed Navigation */}
+      <header className={`fixed top-0 left-0 right-0 z-[100] bg-black border-b shadow-sm transition-all duration-500 ${isTransitioning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4 sm:py-6 gap-4">
+          {/* Left: Logo */}
+          <div className="flex items-center flex-shrink-0">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/top_logo.png"
+              alt="Logo"
+              width={270}
+              height={105}
+              className="h-16 sm:h-20 w-auto"
+              priority
+              quality={100}
+              unoptimized
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+
+          {/* Center: Title */}
+          <div className="flex-1 text-center px-2">
+            <div className="text-base sm:text-xl font-bold whitespace-nowrap" style={{ color: '#bb964c' }}>
+              Investor Opportunities
+            </div>
+          </div>
+
+          {/* Right: Welcome */}
+          <div className="flex-shrink-0 text-right">
+            <div className="text-xs sm:text-sm font-medium whitespace-nowrap" style={{ color: '#bb964c', fontWeight: 'bold' }}>
+              Welcome, Anthony
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Spacer for fixed header */}
+      <div className="h-24 sm:h-[140px]"></div>
+
+      {/* Banner Grid */}
+      <main className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 py-16 max-w-7xl mx-auto relative">
+        {/* Opportunity 1 */}
+        <div 
+          className="block cursor-pointer"
+          onClick={(e) => handleCardClick(e, 0)}
+        >
+          <div 
+            className={`flex flex-col transition-all ${
+              clickedCard === 0 
+                ? 'duration-[800ms] translate-x-[calc(100%+2.5rem)] scale-110 z-50' 
+                : clickedCard !== null 
+                ? 'duration-400 opacity-0 scale-75' 
+                : visibleCards.includes(0) 
+                ? 'opacity-100 translate-y-0 duration-1000' 
+                : 'opacity-0 -translate-y-20 duration-1000'
+            } ${clickedCard === 0 ? 'animate-fade-scale' : ''}`}
+            style={clickedCard === 0 ? {
+              animation: 'moveToCenter 800ms ease-out forwards, fadeAndScale 1000ms 800ms ease-out forwards'
+            } : {}}
           >
-            Read our docs
-          </a>
+            <div 
+              className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+              onMouseMove={(e) => handleMouseMove(e, 0)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 bottom-0 h-full w-full transition-all duration-700 ease-out"
+                style={{
+                  backgroundImage: 'url("/Freight-Intel.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center center',
+                  backgroundRepeat: 'no-repeat',
+                  transform: hoveredCard === 0 
+                    ? `translate(${mousePosition.x}px, ${mousePosition.y}px) scale(1.1)` 
+                    : 'translate(0px, 0px) scale(1)',
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Opportunity 2 */}
+        <div 
+          className="block cursor-pointer"
+          onClick={(e) => handleCardClick(e, 1)}
+        >
+          <div 
+            className={`flex flex-col transition-all ${
+              clickedCard === 1 
+                ? 'duration-[800ms] scale-110 z-50' 
+                : clickedCard !== null 
+                ? 'duration-400 opacity-0 scale-75' 
+                : visibleCards.includes(1) 
+                ? 'opacity-100 translate-y-0 duration-1000' 
+                : 'opacity-0 -translate-y-20 duration-1000'
+            }`}
+            style={clickedCard === 1 ? {
+              animation: 'fadeAndScale 1000ms 800ms ease-out forwards'
+            } : {}}
+          >
+            <div 
+              className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+              onMouseMove={(e) => handleMouseMove(e, 1)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 bottom-0 h-full w-full transition-all duration-700 ease-out"
+                style={{
+                  backgroundImage: 'url("/Cerebrum-Image.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center center',
+                  backgroundRepeat: 'no-repeat',
+                  transform: hoveredCard === 1 
+                    ? `translate(${mousePosition.x}px, ${mousePosition.y}px) scale(1.05)` 
+                    : 'translate(0px, 0px) scale(1)',
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Opportunity 3 */}
+        <div 
+          className="block cursor-pointer"
+          onClick={(e) => handleCardClick(e, 2)}
+        >
+          <div 
+            className={`flex flex-col transition-all ${
+              clickedCard === 2 
+                ? 'duration-[800ms] -translate-x-[calc(100%+2.5rem)] scale-110 z-50' 
+                : clickedCard !== null 
+                ? 'duration-400 opacity-0 scale-75' 
+                : visibleCards.includes(2) 
+                ? 'opacity-100 translate-y-0 duration-1000' 
+                : 'opacity-0 -translate-y-20 duration-1000'
+            }`}
+            style={clickedCard === 2 ? {
+              animation: 'moveToCenter 800ms ease-out forwards, fadeAndScale 1000ms 800ms ease-out forwards'
+            } : {}}
+          >
+            <div 
+              className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+              onMouseMove={(e) => handleMouseMove(e, 2)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 bottom-0 h-full w-full transition-all duration-700 ease-out"
+                style={{
+                  backgroundImage: 'url("/Powertrain.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center center',
+                  backgroundRepeat: 'no-repeat',
+                  transform: hoveredCard === 2 
+                    ? `translate(${mousePosition.x}px, ${mousePosition.y}px) scale(1.1)` 
+                    : 'translate(0px, 0px) scale(1)',
+                }}
+              ></div>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Copyright Footer */}
+      <footer className={`w-full flex justify-end px-4 pb-4 pt-8 sm:pt-0 sm:pb-2 sm:fixed sm:bottom-2 sm:right-4 sm:w-auto z-[101] items-center gap-2 text-xs sm:text-sm transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`} style={{ color: '#bb964c' }}>
+        <span className="material-icons" style={{ fontSize: '1.1em', verticalAlign: 'middle' }}>&copy;</span>
+        Kosseris Synergy © 2025
       </footer>
     </div>
   );
