@@ -1,0 +1,17 @@
+/* Import an elegant serif font for headers */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+
+.header-elegant {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #bb964c;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.header-elegant-small {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: #bb964c;
+  letter-spacing: 0.01em;
+}
