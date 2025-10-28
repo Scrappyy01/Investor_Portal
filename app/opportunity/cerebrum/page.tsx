@@ -24,13 +24,13 @@ export default function CerebrumPage() {
         <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
             {/* Hero Section */}
             <OpportunityHero
-                title="Cerebrum"
+                title="Hyperscale Data-center Campus"
                 description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
             />
 
             {/* Featured Card - Live Website */}
             <FeaturedCard
-                href="/Level-up-team-collaboration-October.pdf"
+                href="/Annexure-A_Project-Cerebrum-Masterplan.pdf"
                 image="/hyspacdataaaaa.png"
                 title="Information Memorandum"
                 description="Full project details for strategic review."

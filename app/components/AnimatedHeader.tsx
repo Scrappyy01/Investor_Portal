@@ -35,9 +35,9 @@ export default function AnimatedHeader() {
 
   // Dynamic header title based on route
   let headerTitle = "Investor Opportunities";
-  if (pathname.startsWith("/opportunity/freight-intel")) headerTitle = "Freight Intel Opportunity";
-  else if (pathname.startsWith("/opportunity/cerebrum")) headerTitle = "Cerebrum Opportunity";
-  else if (pathname.startsWith("/opportunity/powertrain")) headerTitle = "Powertrain Opportunity";
+  if (pathname.startsWith("/opportunity/freight-intel")) headerTitle = "Investor Opportunity";
+  else if (pathname.startsWith("/opportunity/cerebrum")) headerTitle = "Investor Opportunity";
+  else if (pathname.startsWith("/opportunity/powertrain")) headerTitle = "Investor Opportunity";
 
   return (
     <>

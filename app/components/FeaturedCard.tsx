@@ -25,6 +25,8 @@ export default function FeaturedCard({
     <div className="max-w-7xl mx-auto px-6 mb-16">
       <Link 
         href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className={`block group transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
       >
         <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition-all duration-500">

@@ -27,7 +27,7 @@ export default function OpportunityHero({ badge = "Investment Opportunity", titl
   return (
   <div className="pt-40 pb-16 px-6">
       <div className="max-w-7xl mx-auto text-center flex flex-col items-center">
-  <div className="flex flex-col md:flex-row items-center justify-between w-full mb-4 gap-2 md:gap-0">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full mb-4 gap-2 md:gap-0">
           <button
             onClick={() => router.back()}
             className={`hidden md:flex group items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer ${showBadge ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}
@@ -37,13 +37,13 @@ export default function OpportunityHero({ badge = "Investment Opportunity", titl
             </svg>
             <span className="text-sm font-light tracking-wide text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Back</span>
           </button>
-          
+          {/*
           <div className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 border border-gray-200 transition-all duration-700 ${showBadge ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} mx-auto md:mx-0`}> 
             <span className="text-sm font-light tracking-widest uppercase" style={{ color: '#bb964c', letterSpacing: '0.15em' }}>
               {badge}
             </span>
           </div>
-          
+          */}
           <div className="hidden md:block w-[100px]"></div> {/* Spacer for symmetry */}
         </div>
         
@@ -55,9 +55,8 @@ export default function OpportunityHero({ badge = "Investment Opportunity", titl
             fontFamily: 'var(--font-dm-sans)',
             fontWeight: 300
           }}
-        >
-          {title}
-        </h1>
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         <p className={`text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed transition-all duration-700 ${showDesc ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           {description}
         </p>

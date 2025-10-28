@@ -22,6 +22,8 @@ export default function InfoCard({
   return (
     <Link 
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`block group transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
     >
       <div className="relative h-[320px] rounded-2xl overflow-hidden shadow-[0_8px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500 bg-white">
