@@ -50,6 +50,11 @@ export default function Home() {
   }, [status, session, router]);
 
   useEffect(() => {
+    // Only start card animations after loading screen is gone
+    if (status === "loading" || isCheckingOnboarding) {
+      return;
+    }
+
     // Check if we're on mobile (viewport width < 768px)
     const isMobile = window.innerWidth < 768;
     
@@ -70,7 +75,7 @@ export default function Home() {
       ];
       return () => timers.forEach(timer => clearTimeout(timer));
     }
-  }, []);
+  }, [status, isCheckingOnboarding]);
 
   // Intersection Observer for mobile scroll animations (now disabled)
   useEffect(() => {
