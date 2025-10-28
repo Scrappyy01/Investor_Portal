@@ -24,7 +24,8 @@ export default function CerebrumPage() {
     <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
       {/* Hero Section */}
       <OpportunityHero
-  title={"Loadlink Freight<br />Intelligence"}
+        badge="Investment Opportunity"
+        title={"Loadlink Freight<br />Intelligence"}
         description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
       />
 

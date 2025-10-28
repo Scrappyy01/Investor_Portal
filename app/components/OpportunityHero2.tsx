@@ -38,7 +38,11 @@ export default function OpportunityHero2({ badge = "Investment Opportunity", tit
             <span className="text-sm font-light tracking-wide text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Back</span>
           </button>
           
-    
+        <div className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 border border-gray-200 transition-all duration-700 ${showBadge ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} mx-auto md:mx-0`}> 
+            <span className="text-sm font-light tracking-widest uppercase" style={{ color: '#bb964c', letterSpacing: '0.15em' }}>
+              {badge}
+            </span>
+          </div>
           
           <div className="hidden md:block w-[100px]"></div> {/* Spacer for symmetry */}
         </div>

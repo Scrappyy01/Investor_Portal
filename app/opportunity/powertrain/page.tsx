@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import OpportunityHero from "@/app/components/OpportunityHero";
+import OpportunityHero2 from "@/app/components/OpportunityHero";
 import FeaturedCard from "@/app/components/FeaturedCard";
 import InfoCard from "@/app/components/InfoCard";
 
@@ -23,38 +23,34 @@ export default function CerebrumPage() {
     return (
         <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
             {/* Hero Section */}
-            <OpportunityHero
+            <OpportunityHero2
                 title=" AJK Powertrains"
                 description="Explore comprehensive materials, insights, and resources to make your impact on the future of logistics."
             />
 
-                        {/* Featured Card - Live Website */}
-                        <div className="mb-8">
-                            <FeaturedCard
-                                    href="https://investors.loadlink.com.au/wp-content/uploads/2025/10/AJK-Powertrains-Pitch.pdf"
-                                    image="/Powertrain2.png"
-                                    title="Information Memorandum"
-                                    description="Full project details for strategic review."
-                                    isVisible={visibleCards.includes(0)}
-                                    isLive={false}
-                                    badge="Form Review"
-                                    linkText="Review Details"
-                            />
-                        </div>
+            {/* Featured Card - Live Website */}
+            <FeaturedCard
+                href="https://investors.loadlink.com.au/wp-content/uploads/2025/10/AJK-Powertrains-Pitch.pdf"
+                image="/Powertrain2.png"
+                title="Information Memorandum"
+                description="Full project details for strategic review."
+                isVisible={visibleCards.includes(0)}
+                isLive={false}
+                badge="Form Review"
+                linkText="Review Details"
+            />
 
-                        {/* Featured Card - Live Website */}
-                        <div className="mb-8">
-                            <FeaturedCard
-                                    href="https://ajkpowertrains.com/"
-                                    image="/hd_powertrain.png"
-                                    title="AJK Powertrains"
-                                    description="Learn more and register your interest in the future of Heavy Transport"
-                                    isVisible={visibleCards.includes(0)}
-                                    isLive={true}
-                                    badge="Live site"
-                                    linkText="View Site"
-                            />
-                        </div>
+            {/* Featured Card - Live Website */}
+            <FeaturedCard
+                href="https://ajkpowertrains.com/"
+                image="/hd_powertrain.png"
+                title="AJK Powertrains"
+                description="Learn more and register your interest in the future of Heavy Transport"
+                isVisible={visibleCards.includes(0)}
+                isLive={true}
+                badge="Live site"
+                linkText="View Site"
+            />
 
             {/* Grid of Cards */}
             <div className="max-w-7xl mx-auto px-6 pb-24">
