@@ -28,29 +28,33 @@ export default function CerebrumPage() {
                 description="Explore comprehensive materials, insights, and resources to make your impact on the future of logistics."
             />
 
-            {/* Featured Card - Live Website */}
-            <FeaturedCard
-                href="https://investors.loadlink.com.au/wp-content/uploads/2025/10/AJK-Powertrains-Pitch.pdf"
-                image="/Powertrain2.png"
-                title="Information Memorandum"
-                description="Full project details for strategic review."
-                isVisible={visibleCards.includes(0)}
-                isLive={false}
-                badge="Form Review"
-                linkText="Review Details"
-            />
+                        {/* Featured Card - Live Website */}
+                        <div className="mb-8">
+                            <FeaturedCard
+                                    href="https://investors.loadlink.com.au/wp-content/uploads/2025/10/AJK-Powertrains-Pitch.pdf"
+                                    image="/Powertrain2.png"
+                                    title="Information Memorandum"
+                                    description="Full project details for strategic review."
+                                    isVisible={visibleCards.includes(0)}
+                                    isLive={false}
+                                    badge="Form Review"
+                                    linkText="Review Details"
+                            />
+                        </div>
 
-            {/* Featured Card - Live Website */}
-            <FeaturedCard
-                href="https://ajkpowertrains.com/"
-                image="/hd_powertrain.png"
-                title="AJK Powertrains"
-                description="Learn more and register your interest in the future of Heavy Transport"
-                isVisible={visibleCards.includes(0)}
-                isLive={true}
-                badge="Live site"
-                linkText="View Site"
-            />
+                        {/* Featured Card - Live Website */}
+                        <div className="mb-8">
+                            <FeaturedCard
+                                    href="https://ajkpowertrains.com/"
+                                    image="/hd_powertrain.png"
+                                    title="AJK Powertrains"
+                                    description="Learn more and register your interest in the future of Heavy Transport"
+                                    isVisible={visibleCards.includes(0)}
+                                    isLive={true}
+                                    badge="Live site"
+                                    linkText="View Site"
+                            />
+                        </div>
 
             {/* Grid of Cards */}
             <div className="max-w-7xl mx-auto px-6 pb-24">
@@ -71,7 +75,7 @@ export default function CerebrumPage() {
 
                     <InfoCard
                         href="https://investors.loadlink.com.au/booking-calendar"
-                        image="/Google Meett.jpg"
+                        image="/google_meet_logo.png"
                         title="Book an Online Meeting"
                         description="Schedule a direct conversation with our team."
                         isVisible={visibleCards.includes(4)}

@@ -7,17 +7,9 @@ import InfoCard from "@/app/components/InfoCard";
 
 export default function CerebrumPage() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Wait for page to be fully rendered/mounted before starting animations
-    setIsReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) return;
-    
-    // Stagger card animations after page is ready
+    // Stagger card animations
     const timers = [
       setTimeout(() => setVisibleCards([0]), 100),
       setTimeout(() => setVisibleCards([0, 1]), 300),
@@ -26,7 +18,7 @@ export default function CerebrumPage() {
       setTimeout(() => setVisibleCards([0, 1, 2, 3, 4]), 900),
     ];
     return () => timers.forEach(timer => clearTimeout(timer));
-  }, [isReady]);
+  }, []);
 
   return (
     <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
@@ -37,7 +29,7 @@ export default function CerebrumPage() {
       />
 
       {/* Grid of Cards */}
-      <div className="max-w-7xl mx-auto px-6 pb-24">
+      <div className="max-w-7xl mx-auto px-6 pb-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card 1 - Information Memorandum */}
           <InfoCard
@@ -82,7 +74,7 @@ export default function CerebrumPage() {
       />
 
       {/* Grid of Cards (continued) */}
-      <div className="max-w-7xl mx-auto px-6 pb-24">
+      <div className="max-w-7xl mx-auto px-6 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Demo Video - Now same size as InfoCards */}
           <div className={`transition-all duration-700 ${visibleCards.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
@@ -112,7 +104,7 @@ export default function CerebrumPage() {
           {/* Card 3 - Book an Online Meeting */}
           <InfoCard
             href="https://investors.loadlink.com.au/booking-calendar"
-            image="/Google Meet.webp"
+            image="/google_meet_logo.png"
             title="Book an Online Meeting"
             description="Schedule a direct conversation with our team."
             isVisible={visibleCards.includes(4)}
