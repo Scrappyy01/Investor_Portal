@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import OpportunityHero from "@/app/components/OpportunityHero";
+import OpportunityHero2 from "@/app/components/OpportunityHero2";
 import FeaturedCard from "@/app/components/FeaturedCard";
 import InfoCard from "@/app/components/InfoCard";
 
@@ -23,14 +23,15 @@ export default function CerebrumPage() {
     return (
         <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
             {/* Hero Section */}
-            <OpportunityHero
-                title="Cerebrum"
+            <OpportunityHero2
+                badge="Investment Opportunity"
+                title="Hyperscale Data-center Campus"
                 description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
             />
 
             {/* Featured Card - Live Website */}
             <FeaturedCard
-                href="/Level-up-team-collaboration-October.pdf"
+                href="/Annexure-A_Project-Cerebrum-Masterplan.pdf"
                 image="/hyspacdataaaaa.png"
                 title="Information Memorandum"
                 description="Full project details for strategic review."

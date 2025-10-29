@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import OpportunityHero from "@/app/components/OpportunityHero";
+import OpportunityHero2 from "@/app/components/OpportunityHero";
 import FeaturedCard from "@/app/components/FeaturedCard";
 import InfoCard from "@/app/components/InfoCard";
 
@@ -23,7 +23,7 @@ export default function CerebrumPage() {
     return (
         <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
             {/* Hero Section */}
-            <OpportunityHero
+            <OpportunityHero2
                 title=" AJK Powertrains"
                 description="Explore comprehensive materials, insights, and resources to make your impact on the future of logistics."
             />
@@ -71,7 +71,7 @@ export default function CerebrumPage() {
 
                     <InfoCard
                         href="https://investors.loadlink.com.au/booking-calendar"
-                        image="/Google Meett.jpg"
+                        image="/google_meet_logo.png"
                         title="Book an Online Meeting"
                         description="Schedule a direct conversation with our team."
                         isVisible={visibleCards.includes(4)}

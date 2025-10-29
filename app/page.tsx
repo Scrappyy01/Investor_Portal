@@ -50,6 +50,11 @@ export default function Home() {
   }, [status, session, router]);
 
   useEffect(() => {
+    // Only start card animations after loading screen is gone
+    if (status === "loading" || isCheckingOnboarding) {
+      return;
+    }
+
     // Check if we're on mobile (viewport width < 768px)
     const isMobile = window.innerWidth < 768;
     
@@ -70,7 +75,7 @@ export default function Home() {
       ];
       return () => timers.forEach(timer => clearTimeout(timer));
     }
-  }, []);
+  }, [status, isCheckingOnboarding]);
 
   // Intersection Observer for mobile scroll animations (now disabled)
   useEffect(() => {
@@ -339,7 +344,7 @@ export default function Home() {
                       }, 150);
                     }}
                   >
-                    Cerebrum
+                   Cerebrum
                   </button>
                   <button
                     onClick={() => {
@@ -561,7 +566,7 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 right-0 p-8 z-30 transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-[2px] bg-gradient-to-r from-amber-400 to-transparent transition-all duration-500 group-hover:w-20"></div>
-                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity</span>
+                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity 1</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-light tracking-wide text-white mb-2 transition-all duration-500 group-hover:tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                   Freight Intelligence
@@ -634,13 +639,13 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 right-0 p-8 z-30 transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-[2px] bg-gradient-to-r from-amber-400 to-transparent transition-all duration-500 group-hover:w-20"></div>
-                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity</span>
+                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity 2</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-light tracking-wide text-white mb-2 transition-all duration-500 group-hover:tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
-                  Cerebrum
+                  Project Cerebrum
                 </h3>
                 <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  Next-generation intelligence solutions
+                  Hyperscale Data-center campus
                 </p>
               </div>
             </div>
@@ -707,13 +712,13 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 right-0 p-8 z-30 transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-[2px] bg-gradient-to-r from-amber-400 to-transparent transition-all duration-500 group-hover:w-20"></div>
-                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity</span>
+                  <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity 3</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-light tracking-wide text-white mb-2 transition-all duration-500 group-hover:tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                   AJK Powertrains
                 </h3>
                 <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  Pioneering the future of heavy transport
+                  E-hybrid Powertrain Systems
                 </p>
               </div>
             </div>

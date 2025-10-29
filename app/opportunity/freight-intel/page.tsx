@@ -24,24 +24,13 @@ export default function CerebrumPage() {
     <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
       {/* Hero Section */}
       <OpportunityHero
-        title="Freight Intelligence"
+        badge="Investment Opportunity"
+        title={"Loadlink Freight<br />Intelligence"}
         description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
       />
 
-      {/* Featured Card - Live Website */}
-         <FeaturedCard
-           href="https://www.loadlink.com.au/"
-           image="/live-website5.png"
-           title="Loadlink"
-           description="Discover the Future of Australian Haulage."
-           isVisible={visibleCards.includes(0)}
-           isLive={true}
-           badge="Live Platform"
-           linkText="View Now"
-         />
-
       {/* Grid of Cards */}
-      <div className="max-w-7xl mx-auto px-6 pb-24">
+      <div className="max-w-7xl mx-auto px-6 pb-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card 1 - Information Memorandum */}
           <InfoCard
@@ -70,10 +59,27 @@ export default function CerebrumPage() {
               </svg>
             }
           />
+        </div>
+      </div>
 
-          {/* Demo Video */}
-          <div className={`md:col-span-2 transition-all duration-700 ${visibleCards.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="relative group bg-white rounded-2xl overflow-hidden shadow-[0_8px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500">
+      {/* Featured Card - Live Website */}
+      <FeaturedCard
+        href="https://www.loadlink.com.au/"
+        image="/live-website5.png"
+        title="Loadlink"
+        description="Discover the Future of Australian Haulage."
+        isVisible={visibleCards.includes(0)}
+        isLive={true}
+        badge="Live Platform"
+        linkText="View Now"
+      />
+
+      {/* Grid of Cards (continued) */}
+      <div className="max-w-7xl mx-auto px-6 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Demo Video - Now same size as InfoCards */}
+          <div className={`transition-all duration-700 ${visibleCards.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="relative group bg-white rounded-2xl overflow-hidden shadow-[0_8px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500 h-full">
               {/* Optional Title/Label Section */}
               <div className="absolute top-0 left-0 right-0 z-10 p-6 bg-gradient-to-b from-black/60 to-transparent">
                 <div className="flex items-center gap-2">
@@ -89,7 +95,7 @@ export default function CerebrumPage() {
               <video
                 src="/Demo-Video_1080p.mp4"
                 controls
-                className="w-full aspect-video object-cover"
+                className="w-full h-full object-cover"
               >
                 Your browser does not support the video tag.
               </video>
@@ -99,7 +105,7 @@ export default function CerebrumPage() {
           {/* Card 3 - Book an Online Meeting */}
           <InfoCard
             href="https://investors.loadlink.com.au/booking-calendar"
-            image="/Google Meett.jpg"
+            image="/google_meet_logo.png"
             title="Book an Online Meeting"
             description="Schedule a direct conversation with our team."
             isVisible={visibleCards.includes(4)}
