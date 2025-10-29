@@ -25,13 +25,13 @@ export default function CerebrumPage() {
             {/* Hero Section */}
             <OpportunityHero2
                 badge="Investment Opportunity"
-                title="Hyperscale Data-center Campus"
-                description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
+                title="Hyperscale Data center Campus"
+                description="Explore comprehensive materials, insights, and resources."
             />
 
             {/* Featured Card - Live Website */}
             <FeaturedCard
-                href="/Annexure-A_Project-Cerebrum-Masterplan.pdf"
+                href="/Data Centre Investor-Memorandum-October-2025.pdf"
                 image="/hyspacdataaaaa.png"
                 title="Information Memorandum"
                 description="Full project details for strategic review."
@@ -43,7 +43,7 @@ export default function CerebrumPage() {
 
                {/* Featured Card - Live Website */}
             <FeaturedCard
-                href="/investors-loadlink_INVESTOR-SUMMARY.pdf"
+                href="/Annexure-A_Project-Cerebrum-Masterplan.pdf"
                 image="/hyspacdata .png"
                 title="Master Plan"
                 description="Full project details for strategic review."

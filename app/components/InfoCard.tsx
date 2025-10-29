@@ -8,6 +8,7 @@ interface InfoCardProps {
   description: string;
   isVisible?: boolean;
   isLive?: boolean;
+  badge?: string;
 }
 
 export default function InfoCard({ 
@@ -17,7 +18,8 @@ export default function InfoCard({
   title, 
   description, 
   isVisible = true,
-  isLive = false
+  isLive = false,
+  badge = "Live Platform"
 }: InfoCardProps) {
   return (
     <Link 
@@ -35,7 +37,7 @@ export default function InfoCard({
           {isLive && (
             <div className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-black/60 px-2 py-1 rounded-full">
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-              <span className="text-xs font-light tracking-widest uppercase text-white" style={{ letterSpacing: '0.1em' }}>Live Platform</span>
+              <span className="text-xs font-light tracking-widest uppercase text-white" style={{ letterSpacing: '0.1em' }}>{badge}</span>
             </div>
           )}
         </div>
