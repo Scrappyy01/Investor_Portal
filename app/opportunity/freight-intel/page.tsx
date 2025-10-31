@@ -24,9 +24,8 @@ export default function CerebrumPage() {
     <div className="min-h-screen" style={{ background: 'radial-gradient(circle at top center, #f5f5f5 0%, #ffffff 50%, #fafafa 100%)' }}>
       {/* Hero Section */}
       <OpportunityHero
-        badge="Investment Opportunity"
-        title={"Loadlink Freight<br />Intelligence"}
-        description="Explore comprehensive materials, insights, and resources to make your impact on the future of technology."
+  title={"Loadlink Freight<br />Intelligence"}
+        description="Explore comprehensive materials, insights, and resources."
       />
 
       {/* Grid of Cards */}
@@ -95,7 +94,12 @@ export default function CerebrumPage() {
               <video
                 src="/Demo-Video_1080p.mp4"
                 controls
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={(e) => {
+                  if (e.currentTarget.requestFullscreen) {
+                    e.currentTarget.requestFullscreen();
+                  }
+                }}
               >
                 Your browser does not support the video tag.
               </video>

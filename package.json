@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/nodemailer": "^7.0.3",
     "bcryptjs": "^3.0.2",
     "date-fns": "^4.1.0",
     "mongodb": "^6.20.0",
@@ -17,7 +18,8 @@
     "puppeteer": "^24.26.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-signature-canvas": "^1.1.0-alpha.2"
+    "react-signature-canvas": "^1.1.0-alpha.2",
+    "resend": "^6.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

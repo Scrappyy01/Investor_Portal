@@ -59,6 +59,8 @@ export default function CerebrumPage() {
                     <InfoCard
                         href="https://ajkengines.com.au/"
                         image="/ajk-engines-logo.png"
+                        isLive={true}
+                        badge="live store"
                         title="AJK Engines Online Superstore"
                         description="Re-Power your truck with New, Remanufactured Engines and Parts."
                         isVisible={visibleCards.includes(1)}
