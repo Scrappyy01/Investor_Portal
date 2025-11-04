@@ -20,8 +20,8 @@ export default function ConfidentialityDeed({
   today,
 }: ConfidentialityDeedProps) {
   return (
-    <div className="max-h-[600px] overflow-y-auto border border-gray-300 rounded-lg p-6 bg-gray-50 text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
-      <h3 className="font-bold text-lg mb-4">CONFIDENTIALITY DEED</h3>
+    <div className="max-h-[600px] overflow-y-auto p-8 bg-gray-100 font-serif text-gray-800 leading-relaxed rounded-lg">
+      <h1 className="text-xl font-bold text-amber-600 mb-6 text-center">CONFIDENTIALITY DEED</h1>
       <p className="mb-4">THIS DEED is made the day of {today}</p>
       <p className="mb-4">
         BETWEEN: LOAD LINK AUSTRALIA PTY LIMITED (ACN 661 824 175) of
@@ -33,7 +33,7 @@ export default function ConfidentialityDeed({
         (&quot;Recipient&quot;).
       </p>
 
-      <h4 className="font-bold mt-6 mb-2">WHEREAS:</h4>
+      <h2 className="text-lg font-bold text-amber-600 mb-3 mt-6">WHEREAS:</h2>
       <p className="mb-2">
         A. The Disclosing Party and the Recipient wish to pursue
         discussions concerning possible transactions between them and
@@ -51,22 +51,22 @@ export default function ConfidentialityDeed({
         entering into this Deed.
       </p>
 
-      <h4 className="font-bold mt-6 mb-2">
+      <h2 className="text-lg font-bold text-amber-600 mb-3 mt-6">
         NOW THIS DEED WITNESSES as follows:
-      </h4>
-      <h5 className="font-semibold mt-4 mb-2">
+      </h2>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         1. DEFINITIONS AND INTERPRETATIONS
-      </h5>
+      </h3>
       <p className="mb-2">
         <strong>1.1 Definitions</strong>
       </p>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;Beneficiaries&quot; means the Disclosing Party and each of its
         Related Bodies Corporate who have an interest in, or who are
         the subject of, any of the Confidential Information.
       </p>
-      <p className="mb-2">&quot;Confidential Information&quot; means:</p>
-      <ul className="list-disc ml-6 mb-4">
+      <p className="mb-2 font-bold">&quot;Confidential Information&quot; means:</p>
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           All commercial, financial, legal and technical information
           and know-how directly or indirectly related to the business
@@ -96,7 +96,7 @@ export default function ConfidentialityDeed({
         </li>
       </ul>
       <p className="mb-2">But does not include information:</p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Which at the time of first disclosure to the Recipient is in
           the public domain;
@@ -120,29 +120,29 @@ export default function ConfidentialityDeed({
           Disclosing Party or any other person.
         </li>
       </ul>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;Derived Information&quot; means any note, calculation, conclusion,
         summary or other material derived or produced partly or wholly
         from any Confidential Information.
       </p>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;document&quot; has the meaning given to it in Section 9 of the
         Corporations Law.
       </p>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;Related Bodies Corporate&quot; has the meaning given to it in
         Section 50 of the Corporations Law.
       </p>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;Representatives&quot; means any directors, officers, employees,
         legal, financial and other expert advisers and agents of the
         Recipient.
       </p>
-      <p className="mb-2">
+      <p className="mb-2 font-bold">
         &quot;Permitted Purpose&quot; means the purpose of assessing whether or
         not the Recipient will pursue a Permitted Transaction.
       </p>
-      <p className="mb-2">
+      <p className="mb-4 font-bold">
         &quot;Permitted Transaction&quot; means any transaction agreed between
         the Disclosing Party and the Recipient and/or their respective
         Bodies Corporate pursuant to which the Recipient or any of its
@@ -153,7 +153,7 @@ export default function ConfidentialityDeed({
       <p className="mb-2">
         <strong>1.2 Interpretation</strong>
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Headings are for convenience only and do not affect
           interpretation;
@@ -187,23 +187,23 @@ export default function ConfidentialityDeed({
         or withheld by the party in its absolute discretion.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         2. PROVISION OF CONFIDENTIAL INFORMATION
-      </h5>
+      </h3>
       <p className="mb-4">
         Subject to this Deed, the Disclosing Party may, but shall not
         be obliged to, provide any Confidential Information to the
         Recipient.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">3. CONFIDENTIALITY</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">3. CONFIDENTIALITY</h3>
       <p className="mb-2">
         <strong>
           3.1 The Recipient undertakes and covenants (on its own
           behalf and on behalf of all its Representatives):
         </strong>
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           To keep and hold all Confidential Information strictly
           confidential and, subject to Clause 4, not to disclose or
@@ -261,7 +261,7 @@ export default function ConfidentialityDeed({
       <p className="mb-2">
         <strong>3.2 Prohibition on discussions</strong>
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Not, without the prior consent of the Disclosing Party,
           directly or indirectly make any enquiries of or discuss with
@@ -284,9 +284,9 @@ export default function ConfidentialityDeed({
           accordance with this Deed).
         </li>
       </ul>
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         4. PERMITTED DISCLOSURE
-      </h5>
+      </h3>
       <p className="mb-4">
         The Recipient may disclose Confidential Information to such of
         its Representatives or Related Bodies Corporate who reasonably
@@ -294,9 +294,9 @@ export default function ConfidentialityDeed({
         the Recipient to undertake the Permitted Purpose.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         5. MANDATORY DISCLOSURE
-      </h5>
+      </h3>
       <p className="mb-4">
         Nothing in this Deed prohibits the Recipient from disclosing
         any Confidential Information which is required to be disclosed
@@ -310,7 +310,7 @@ export default function ConfidentialityDeed({
         relief from or to minimise the disclosure.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">6. DISCLAIMER</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">6. DISCLAIMER</h3>
       <p className="mb-2">
         <strong>6.1 Disclosing Party not liable</strong>
       </p>
@@ -365,9 +365,9 @@ export default function ConfidentialityDeed({
         remain the exclusive property of the Disclosing Party.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         7. RETURN OF CONFIDENTIAL INFORMATION
-      </h5>
+      </h3>
       <p className="mb-2">
         <strong>7.1</strong> Upon the earlier of completion or
         discontinuance of the Permitted Purpose or request by the
@@ -382,7 +382,7 @@ export default function ConfidentialityDeed({
         Notwithstanding the foregoing, the Recipient may, in its
         discretion:
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>Deliver or destroy Derived Information;</li>
         <li>
           Retain minutes of meeting of its directors, together with
@@ -399,16 +399,16 @@ export default function ConfidentialityDeed({
         Deed.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">8. THIRD PARTIES</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">8. THIRD PARTIES</h3>
       <p className="mb-4">
         The Recipient acknowledges that the Disclosing Party is free
         to disclose any Confidential Information to any other person
         and is not obliged to notify the Recipient if it does so.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         9. CONTINUING OBLIGATION
-      </h5>
+      </h3>
       <p className="mb-4">
         The Recipient acknowledges and agrees that the terms,
         conditions and obligations under this Deed do not cease on the
@@ -417,9 +417,9 @@ export default function ConfidentialityDeed({
         will continue indefinitely.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         10. BENEFIT OF AGREEMENT
-      </h5>
+      </h3>
       <p className="mb-4">
         The Disclosing Party enters into this Deed for and on behalf
         of itself and the other Beneficiaries. The Recipient
@@ -427,7 +427,7 @@ export default function ConfidentialityDeed({
         on behalf of itself and the other Beneficiaries.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">11. INDEMNITY</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">11. INDEMNITY</h3>
       <p className="mb-2">
         <strong>11.1</strong> The Recipient indemnifies and must keep
         indemnified each of the Beneficiaries from and against all
@@ -437,7 +437,7 @@ export default function ConfidentialityDeed({
         connection with the enforcement of this Deed) as a result of
         or in connection with:
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>Any breach of this Deed by the Recipient;</li>
         <li>
           Any act or omission by any of its Representatives which, if
@@ -449,7 +449,7 @@ export default function ConfidentialityDeed({
         <strong>11.2</strong> The indemnity given by the Recipient in
         this Clause 11:
       </p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Is for the benefit of each of the Beneficiaries. The
           indemnity may be enforced by the Disclosing Party on behalf
@@ -459,7 +459,7 @@ export default function ConfidentialityDeed({
         <li>Shall survive the termination of this Deed.</li>
       </ul>
 
-      <h5 className="font-semibold mt-4 mb-2">12. REMEDIES</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">12. REMEDIES</h3>
       <p className="mb-4">
         The Recipient acknowledges that damages is an inadequate
         remedy for any breach of this Deed and that subject to the
@@ -471,9 +471,9 @@ export default function ConfidentialityDeed({
         constitute a breach of this Deed.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">13. NOTICES</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">13. NOTICES</h3>
       <p className="mb-2">Any notice given under this Deed:</p>
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Must be in writing addressed to the intended recipient at
           the address shown below or the address last notified by the
@@ -503,7 +503,7 @@ export default function ConfidentialityDeed({
       <p className="mb-1">Attention: {repName || "___"}</p>
       <p className="mb-4">Email: {email || "___"}</p>
 
-      <ul className="list-disc ml-6 mb-4">
+      <ul className="list-[lower-alpha] pl-6 space-y-2 mb-4">
         <li>
           Must be signed by a person duly authorised by the sender;
         </li>
@@ -517,13 +517,13 @@ export default function ConfidentialityDeed({
           generally carried on in that place.
         </li>
       </ul>
-      <h5 className="font-semibold mt-4 mb-2">14. AMENDMENT</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">14. AMENDMENT</h3>
       <p className="mb-4">
         This Deed may be amended only by another deed executed by all
         parties.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">15. NO WAIVER</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">15. NO WAIVER</h3>
       <p className="mb-4">
         No failure to exercise and no delay in exercising any right,
         power or remedy under this Deed will operate as a waiver. Nor
@@ -532,9 +532,9 @@ export default function ConfidentialityDeed({
         other right, power or remedy.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">
         16. STAMP DUTY AND COSTS
-      </h5>
+      </h3>
       <p className="mb-4">
         Each party shall bear its own costs arising out of the
         preparation of this Deed. All stamp duty chargeable on this
@@ -543,7 +543,7 @@ export default function ConfidentialityDeed({
         for that stamp duty.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">17. GOVERNING LAW</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">17. GOVERNING LAW</h3>
       <p className="mb-4">
         This Deed is governed by the laws in force in Queensland. Each
         party irrevocably and unconditionally submits to the
@@ -551,7 +551,7 @@ export default function ConfidentialityDeed({
         jurisdiction there.
       </p>
 
-      <h5 className="font-semibold mt-4 mb-2">18. COUNTERPARTS</h5>
+      <h3 className="text-base font-bold text-amber-600 mb-2 mt-5">18. COUNTERPARTS</h3>
       <p className="mb-4">
         This Deed may be executed in any number of counterparts. All
         counterparts taken together will be taken to constitute one
@@ -566,3 +566,5 @@ export default function ConfidentialityDeed({
     </div>
   );
 }
+
+

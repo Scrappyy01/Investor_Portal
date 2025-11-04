@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 import nodemailer from "nodemailer";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,6 +35,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Load signature images and convert to base64
+    const publicDir = join(process.cwd(), "public");
+    const sig1Buffer = readFileSync(join(publicDir, "signature.png"));
+    const sig2Buffer = readFileSync(join(publicDir, "signature2.png"));
+    const logoBuffer = readFileSync(join(publicDir, "kosseris_synergy_logo_gold.png"));
+    const footerLogoBuffer = readFileSync(join(publicDir, "logo_no_bg.png"));
+    const sig1Base64 = `data:image/png;base64,${sig1Buffer.toString("base64")}`;
+    const sig2Base64 = `data:image/png;base64,${sig2Buffer.toString("base64")}`;
+    const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
+    const footerLogoBase64 = `data:image/png;base64,${footerLogoBuffer.toString("base64")}`;
+
     // Generate complete HTML with embedded styles and signature
     const html = generatePdfHtml({
       companyName,
@@ -43,7 +56,11 @@ export async function POST(request: NextRequest) {
       repName,
       email,
       deedDate,
-      signatureBase64
+      signatureBase64,
+      sig1Base64,
+      sig2Base64,
+      logoBase64,
+      footerLogoBase64
     });
 
     // Launch puppeteer and generate PDF
@@ -109,12 +126,17 @@ function generatePdfHtml(data: {
   email: string;
   deedDate: string;
   signatureBase64: string;
+  sig1Base64: string;
+  sig2Base64: string;
+  logoBase64: string;
+  footerLogoBase64: string;
 }) {
   return `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -123,51 +145,57 @@ function generatePdfHtml(data: {
     }
     
     body {
-      font-family: 'Times New Roman', serif;
+      font-family: 'Merriweather', 'Times New Roman', serif;
       font-size: 11pt;
-      line-height: 1.6;
+      line-height: 1.8;
       color: #1f2937;
-      padding: 20px;
+      padding: 0 40px 200px 40px;
+      max-width: 100%;
     }
     
     h1 {
-      font-size: 18pt;
-      font-weight: bold;
+      font-size: 20pt;
+      font-weight: 700;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      color: #bb964c;
+      letter-spacing: 0.5pt;
     }
     
     h2 {
-      font-size: 14pt;
-      font-weight: bold;
+      font-size: 15pt;
+      font-weight: 700;
       margin-top: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      color: #bb964c;
     }
     
     h3 {
-      font-size: 12pt;
-      font-weight: bold;
-      margin-top: 15px;
-      margin-bottom: 8px;
+      font-size: 13pt;
+      font-weight: 700;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      color: #bb964c;
     }
     
     p {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-align: justify;
     }
     
     ul {
-      margin-left: 30px;
-      margin-bottom: 10px;
+      margin-left: 40px;
+      margin-bottom: 12px;
+      list-style-type: lower-alpha;
     }
     
     li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       text-align: justify;
     }
     
     strong {
-      font-weight: bold;
+      font-weight: 700;
     }
     
     .signature-section {
@@ -175,22 +203,36 @@ function generatePdfHtml(data: {
       page-break-inside: avoid;
     }
     
-    .signature-box {
-      border: 2px solid #d1d5db;
-      padding: 10px;
-      margin: 20px 0;
-      text-align: center;
-    }
-    
-    .signature-image {
-      max-width: 300px;
-      max-height: 100px;
-      margin: 10px auto;
+    .signature-section h3 {
+      page-break-after: avoid;
     }
     
     .signature-info {
       margin-top: 30px;
       font-size: 10pt;
+      page-break-inside: avoid;
+    }
+    
+    .signature-box {
+      border: 2px solid #d1d5db;
+      padding: 10px;
+      margin: 15px 0 20px 0;
+      text-align: center;
+      page-break-inside: avoid;
+      width: 150px;
+      float: left;
+      font-size: 9pt;
+    }
+    
+    .signature-image {
+      max-width: 130px;
+      max-height: 130px;
+      margin: 5px auto;
+    }
+    
+    .signature-wrapper {
+      page-break-inside: avoid;
+      margin-bottom: 20px;
     }
     
     .footer {
@@ -199,14 +241,50 @@ function generatePdfHtml(data: {
       font-style: italic;
       color: #6b7280;
       text-align: center;
+      page-break-inside: avoid;
+    }
+    
+    .watermark {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 450px;
+      opacity: 0.25;
+      filter: grayscale(100%);
+      z-index: -1;
+    }
+    
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 0 40px 200px 40px;
+    }
+    
+    .footer-line {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, #bb964c, #d4af37);
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
+  <img src="${data.logoBase64}" alt="Kosseris Synergy Logo" class="watermark" />
+  
+  <div class="page-footer">
+    <div class="footer-line"></div>
+  </div>
+  
   <h1>CONFIDENTIALITY DEED</h1>
   
   <p>THIS DEED is made the day of <strong>${data.deedDate}</strong></p>
-  
+
   <p><strong>BETWEEN:</strong> LOAD LINK AUSTRALIA PTY LIMITED (ACN 661 824 175) of Unit 44/211 Brisbane Road Biggera Waters, Queensland 4216 ("Disclosing Party"); and <strong>${data.companyName}</strong> (ACN ${data.acn}) of ${data.street}, ${data.state} ${data.postcode} ("Recipient").</p>
 
   <h2>WHEREAS:</h2>
@@ -369,24 +447,59 @@ function generatePdfHtml(data: {
   <h3>18. COUNTERPARTS</h3>
   <p>This Deed may be executed in any number of counterparts. All counterparts taken together will be taken to constitute one instrument.</p>
 
-  <div class="signature-section">
+  <div class="signature-section" style="page-break-before: always;">
     <h3>EXECUTED AS A DEED</h3>
+
+    <p style="margin-bottom: 5px;">SIGNED SEALED AND DELIVERED</p>
+    <p style="margin-bottom: 5px;">by LOAD LINK AUSTRALIA PTY LIMITED</p>
+    <p style="margin-bottom: 5px;">in accordance with section 127 of the</p>
+    <p style="margin-bottom: 15px;">Corporations Act and in the presence of:</p>
+
+    <p><strong>Signed:</strong></p>
+
+    <div class="signature-wrapper">
+      <div class="signature-box">
+        <img src="${data.sig1Base64}" alt="Load Link Signature" class="signature-image" />
+        <p style="margin-top: 10px; font-size: 10pt;">Anthony Kousesis<br>Managing Director<br>${data.deedDate}</p>
+      </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <p style="margin-bottom: 5px;">SIGNED SEALED AND DELIVERED</p>
+    <p style="margin-bottom: 5px;">by AJK Engines PTY LTD</p>
+    <p style="margin-bottom: 5px;">in accordance with section 127 of the</p>
+    <p style="margin-bottom: 15px;">Corporations Act and in the presence of:</p>
+
+    <p><strong>Signed:</strong></p>
+
+    <div class="signature-wrapper">
+      <div class="signature-box">
+        <img src="${data.sig2Base64}" alt="AJK Engines Signature" class="signature-image" />
+        <p style="margin-top: 10px; font-size: 10pt;">Matthew Hunt<br>AJK Engines PTY LTD<br>${data.deedDate}</p>
+      </div>
+    </div>
+
+    <div style="clear: both;"></div>     
     
-    <div class="signature-info">
+  </div>
+
+  <div class="signature-info" style="page-break-before: always;">
       <p><strong>Signed by ${data.repName}</strong><br>
       as authorised representative of <strong>${data.companyName}</strong></p>
     </div>
 
     <div class="signature-box">
-      <p><strong>Signature:</strong></p>
       <img src="${data.signatureBase64}" alt="Signature" class="signature-image" />
-      <p style="margin-top: 10px;"><strong>Date:</strong> ${data.deedDate}</p>
+      <p style="margin-top: 10px; font-size: 10pt;"><strong>Date:</strong> ${data.deedDate}</p>
     </div>
-  </div>
-
-  <div class="footer">
-    <p>This Confidentiality Deed was generated electronically and is a legally binding document.</p>
-    <p>Document generated on ${data.deedDate} for ${data.companyName}</p>
+    
+    <div style="clear: both;"></div>
+    
+    <div class="footer">
+      <p>This Confidentiality Deed was generated electronically and is a legally binding document.</p>
+      <p>Document generated on ${data.deedDate} for ${data.companyName}</p>
+    </div>
   </div>
 </body>
 </html>
@@ -429,7 +542,7 @@ async function sendConfidentialityDeedEmails(data: {
                 Kosseris Synergy Confidentiality Deed Signed
               </h2>
               
-              <p>Details on completed sign up:</p>
+              <p>Details on completed document:</p>
               
               <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <p style="margin: 5px 0;"><strong>Company:</strong> ${data.companyName}</p>
@@ -438,7 +551,7 @@ async function sendConfidentialityDeedEmails(data: {
                 <p style="margin: 5px 0;"><strong>Date Signed:</strong> ${data.deedDate}</p>
               </div>
               
-              <p>The signed confidentiality deed is attached to this email as a PDF document.</p>
+              <p>Your signed Confidentiality Deed is attached to this email as a PDF Document.</p>
               
               <p style="font-size: 12px; color: #6b7280; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
                 This is an automated message from the LoadLink Investor Portal.<br>

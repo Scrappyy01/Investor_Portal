@@ -107,6 +107,9 @@ export default function OnboardingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [signatureSaved, setSignatureSaved] = useState(false);
+  const [pdfDownloaded, setPdfDownloaded] = useState(false);
+  const [isPdfGenerating, setIsPdfGenerating] = useState(false);
   const signatureRef = useRef<SignatureCanvas>(null);
   const today = format(new Date(), "dd MMMM yyyy");
 
@@ -221,6 +224,10 @@ export default function OnboardingPage() {
       case 4:
         if (!formData.termsAccepted) {
           setError("You must accept the terms to continue");
+          return false;
+        }
+        if (!signatureSaved) {
+          setError("You must save your signature to continue");
           return false;
         }
         return true;
@@ -509,7 +516,7 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() => signatureRef.current?.clear()}
-                    className="px-4 py-2 text-sm bg-gray-100 border border-gray-300 rounded hover:bg-gray-200"
+                    className="px-4 py-2 text-sm bg-gray-100 text-black border border-gray-300 rounded hover:bg-gray-200"
                   >
                     Clear
                   </button>
@@ -520,6 +527,7 @@ export default function OnboardingPage() {
                         ?.getTrimmedCanvas()
                         .toDataURL("image/png");
                       updateFormData("signature", dataURL || "");
+                      setSignatureSaved(true);
                     }}
                     className="px-4 py-2 text-sm bg-amber-500 text-white rounded hover:bg-amber-600"
                   >
@@ -558,6 +566,7 @@ export default function OnboardingPage() {
 
               <button
                 onClick={async () => {
+                  setIsPdfGenerating(true);
                   const payload = {
                     companyName: formData.companyName,
                     acn: formData.acn,
@@ -593,6 +602,7 @@ export default function OnboardingPage() {
 
                   if (missing.length > 0) {
                     alert("Missing or invalid value. Please check the form.");
+                    setIsPdfGenerating(false);
                     return;
                   }
 
@@ -614,14 +624,44 @@ export default function OnboardingPage() {
                     link.click();
                     link.remove();
                     window.URL.revokeObjectURL(url);
+                    setPdfDownloaded(true);
                   } catch (err) {
                     alert("There was a problem generating the PDF.");
                     console.error(err);
+                  } finally {
+                    setIsPdfGenerating(false);
                   }
                 }}
-                className="inline-block px-6 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-all shadow-md"
+                disabled={isPdfGenerating}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-all shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Download Confidentiality Deed
+                {isPdfGenerating ? (
+                  <>
+                    <svg
+                      className="w-5 h-5 animate-spin"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span>Generating PDF...</span>
+                  </>
+                ) : (
+                  <span>Download Confidentiality Deed</span>
+                )}
               </button>
             </div>
           )}
@@ -646,17 +686,24 @@ export default function OnboardingPage() {
                 Next
               </button>
             ) : (
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className={`ml-auto px-8 py-3 rounded-lg transition-all shadow-lg ${
-                  isSubmitting
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-gradient-to-r from-amber-400 to-amber-500 text-white hover:from-amber-500 hover:to-amber-600"
-                }`}
-              >
-                {isSubmitting ? "Redirecting..." : "Complete Onboarding"}
-              </button>
+              <div className="flex flex-col items-end">
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting || !pdfDownloaded}
+                  className={`px-8 py-3 rounded-lg transition-all shadow-lg ${
+                    isSubmitting || !pdfDownloaded
+                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      : "bg-gradient-to-r from-amber-400 to-amber-500 text-white hover:from-amber-500 hover:to-amber-600"
+                  }`}
+                >
+                  {isSubmitting ? "Redirecting..." : "Complete Onboarding"}
+                </button>
+                {!pdfDownloaded && (
+                  <p className="text-sm text-gray-600 mt-2">
+                    Please download deed before continuing
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </div>
