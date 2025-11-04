@@ -272,6 +272,69 @@ function generatePdfHtml(data: {
       background: linear-gradient(to right, #bb964c, #d4af37);
       margin-top: auto;
     }
+    
+    .title-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      page-break-after: always;
+      position: relative;
+      padding: 0;
+    }
+    
+    .title-page-watermark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .title-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .title-logo {
+      width: 200px;
+      height: auto;
+      margin-bottom: 40px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .title-content p {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .title-content .party-name {
+      font-weight: 700;
+      font-size: 14pt;
+      margin-bottom: 24px;
+    }
+    
+    .title-content h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: 2pt;
+      margin: 24px 0;
+    }
+    
+    .title-divider {
+      width: 400px;
+      height: 1px;
+      background-color: #9ca3af;
+      margin: 24px auto;
+    }
   </style>
 </head>
 <body>
@@ -279,6 +342,22 @@ function generatePdfHtml(data: {
   
   <div class="page-footer">
     <div class="footer-line"></div>
+  </div>
+  
+  <!-- Title Page -->
+  <div class="title-page">
+    <div class="title-page-watermark"></div>
+    <div class="title-content">
+      <img src="${data.logoBase64}" alt="Kosseris Synergy Logo" class="title-logo" />
+      <p>Between</p>
+      <p class="party-name">Load Link Australia Pty Limited</p>
+      <p>and</p>
+      <p class="party-name" style="text-transform: uppercase;">${data.companyName}</p>
+      <div class="title-divider"></div>
+      <h1>CONFIDENTIALITY DEED</h1>
+      <div class="title-divider"></div>
+      <p style="font-size: 11pt; margin-top: 30px;">${data.deedDate}</p>
+    </div>
   </div>
   
   <h1>CONFIDENTIALITY DEED</h1>
