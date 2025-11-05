@@ -142,3 +142,92 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
+/* Booking Page Styles */
+
+.booking-container {
+  max-width: 700px;
+  margin: 160px auto 60px;
+  padding: 0px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: "DM Sans Fallback", sans-serif;
+  color: #333;
+  overflow: hidden;
+}
+
+.booking-banner {
+  background-color: #000;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.booking-banner-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #bb964c;
+  margin: 0;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+}
+
+.booking-label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.booking-input,
+.booking-select {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+.booking-time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.booking-time-slot {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+
+.booking-selected-slot {
+  background-color: #bb964c;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.booking-button {
+  padding: 14px;
+  background-color: #bb964c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.booking-status {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
