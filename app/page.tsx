@@ -168,7 +168,7 @@ export default function Home() {
                 textShadow: '0 2px 8px rgba(0,0,0,0.06)'
               }}
             >
-              Investor Opportunities
+              Investor Opportunities HERE IT IS HERE
             </div>
           </div>
 
@@ -642,7 +642,7 @@ export default function Home() {
                   <span className="text-xs tracking-[0.3em] uppercase text-amber-400 font-light">Opportunity 2</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-light tracking-wide text-white mb-2 transition-all duration-500 group-hover:tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
-                  Project Cerebrum
+                  Projecet Cerebrum
                 </h3>
                 <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
                   Hyperscale Data-center campus
