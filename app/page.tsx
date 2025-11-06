@@ -168,7 +168,7 @@ export default function Home() {
                 textShadow: '0 2px 8px rgba(0,0,0,0.06)'
               }}
             >
-              Investor Opportunities HERE IT IS HERE
+              Investor Opportunities
             </div>
           </div>
 
