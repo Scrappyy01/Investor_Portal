@@ -320,7 +320,7 @@ export default function OnboardingPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Company Name <span className="text-red-500">*</span>
+                  Company Name <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
