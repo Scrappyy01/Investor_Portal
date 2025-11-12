@@ -293,7 +293,7 @@ export default function OnboardingPage() {
             className="text-3xl font-light tracking-wide"
             style={{ fontFamily: "var(--font-dm-sans)", color: "#bb964c" }}
           >
-            Investor Onboarding TEST
+            Investor Onboarding
           </h1>
           <p className="text-gray-300 mt-2 font-light">
             Complete your confidentiality agreement
