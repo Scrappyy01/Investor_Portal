@@ -472,7 +472,11 @@ export default function OnboardingPage() {
                 today={today}
               />
 
-              <div className="flex items-start mt-6">
+              <div className={`flex items-start mt-6 p-4 rounded-lg transition-all ${
+                error === "You must accept the terms to continue" 
+                  ? "bg-red-50 border border-red-200" 
+                  : "bg-gray-50 border border-gray-200"
+              }`}>
                 <input
                   type="checkbox"
                   id="termsAccepted"
@@ -482,13 +486,20 @@ export default function OnboardingPage() {
                   }
                   className="mt-1 h-5 w-5 text-amber-500 focus:ring-amber-500 border-gray-300 rounded cursor-pointer"
                 />
-                <label
-                  htmlFor="termsAccepted"
-                  className="ml-3 text-sm text-gray-700 cursor-pointer"
-                >
-                  I have read and agree to the terms of the Confidentiality Deed{" "}
-                  <span className="text-red-500">*</span>
-                </label>
+                <div className="ml-3">
+                  <label
+                    htmlFor="termsAccepted"
+                    className="text-sm text-gray-700 cursor-pointer block"
+                  >
+                    I have read and agree to the terms of the Confidentiality Deed{" "}
+                    <span className="text-red-500">*</span>
+                  </label>
+                  {error === "You must accept the terms to continue" && (
+                    <p className="text-xs text-red-600 mt-1 font-medium">
+                      ✓ Please tick this box to continue
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="mt-10 text-left">
                 <label className="block text-sm font-medium text-gray-700 mb-2">

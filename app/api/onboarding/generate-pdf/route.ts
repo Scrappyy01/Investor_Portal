@@ -97,16 +97,18 @@ async function sendConfidentialityDeedEmails(data: {
   email: string;
   deedDate: string;
 }) {
-  // Create Gmail transporter
+  // Create SMTP transporter for LoadLink corporate email
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '465'),
+    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS, // Use App Password, not regular password
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
     },
   });
 
-  const recipients = ["hortondylan010@gmail.com", "dylan@loadlink.com.au"];
+  const recipients = ["jessica.santos@loadlink.com.au", "dylan@loadlink.com.au"];
   
   console.log("🔵 Attempting to send emails to:", recipients);
   console.log("🔑 Email configured:", !!process.env.EMAIL_USER);
@@ -114,7 +116,7 @@ async function sendConfidentialityDeedEmails(data: {
   try {
     // Send email with PDF attachment
     const result = await transporter.sendMail({
-      from: `"Investor Portal" <${process.env.EMAIL_USER}>`,
+      from: `"Investor Portal" <${process.env.SMTP_USER}>`,
       to: recipients.join(", "),
       subject: `Confidentiality Deed - ${data.companyName}`,
       html: `
