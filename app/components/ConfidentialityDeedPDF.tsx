@@ -11,11 +11,11 @@ import {
 // Define styles
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
-    paddingBottom: 200,
+    padding: 30,
+    paddingBottom: 80,
     fontFamily: "Times-Roman",
     fontSize: 11,
-    lineHeight: 1.8,
+    lineHeight: 1.5,
     color: "#1f2937",
   },
   titlePage: {
@@ -55,37 +55,37 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 24,
+    marginBottom: 16,
     color: "#bb964c",
     letterSpacing: 0.5,
   },
   h2: {
     fontSize: 15,
     fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 12,
+    marginTop: 12,
+    marginBottom: 8,
     color: "#bb964c",
   },
   h3: {
     fontSize: 13,
     fontWeight: "bold",
-    marginTop: 16,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom: 6,
     color: "#bb964c",
   },
   paragraph: {
-    marginBottom: 12,
+    marginBottom: 8,
     textAlign: "justify",
   },
   bold: {
     fontWeight: "bold",
   },
   list: {
-    marginLeft: 40,
-    marginBottom: 12,
+    marginLeft: 30,
+    marginBottom: 8,
   },
   listItem: {
-    marginBottom: 10,
+    marginBottom: 6,
     textAlign: "justify",
     flexDirection: "row",
   },
@@ -643,8 +643,7 @@ const ConfidentialityDeedPDF: React.FC<ConfidentialityDeedPDFProps> = ({
       <Text style={styles.paragraph}>
         <Text style={styles.bold}>Disclosing Party</Text>
         {"\n"}
-        Load Link Australia Pty Limited & AJK ENGINES PTY LIMITED & Fortis
-        Fundamenta Pty Ltd atf the Fortis Fundamenta Trust{"\n"}
+        Load Link Australia Pty Limited & AJK ENGINES PTY LIMITED{"\n"}
         Unit 44/211 Brisbane Road Biggera Waters, Queensland 4216{"\n"}
         Attention: Mr Anthony Kosseris{"\n"}
         Email: anthony@loadlink.com.au
@@ -727,41 +726,41 @@ const ConfidentialityDeedPDF: React.FC<ConfidentialityDeedPDFProps> = ({
         presence of:
       </Text>
 
-      <Text style={styles.paragraph}>
-        <Text style={styles.bold}>Signed:</Text>
-      </Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
+        {/* Left side - Load Link signature */}
+        <View style={{ width: '45%' }}>
+          <Text style={styles.paragraph}>
+            <Text style={styles.bold}>Signed:</Text>
+          </Text>
 
-      <View style={styles.signatureBox}>
-        <Image src={sig1Base64} style={styles.signatureImage} />
-        <Text style={{ marginTop: 10, fontSize: 10 }}>
-          Anthony Kousesis{"\n"}Managing Director{"\n"}
-          {deedDate}
-        </Text>
-      </View>
+          <View style={styles.signatureBox}>
+            <Image src={sig1Base64} style={styles.signatureImage} />
+            <Text style={{ marginTop: 10, fontSize: 10 }}>
+              Anthony Kousesis{"\n"}Managing Director{"\n"}
+              {deedDate}
+            </Text>
+          </View>
 
-      <Text style={styles.paragraph}>SIGNED SEALED AND DELIVERED</Text>
-      <Text style={styles.paragraph}>by AJK Engines PTY LTD</Text>
+          <Text style={styles.paragraph}>SIGNED SEALED AND DELIVERED</Text>
+          <Text style={styles.paragraph}>by AJK Engines PTY LTD</Text>
+        </View>
 
-      <View style={styles.signatureBox}>
-        <Image src={sig2Base64} style={styles.signatureImage} />
-        <Text style={{ marginTop: 10, fontSize: 10 }}>
-          Matthew Hunt{"\n"}AJK Engines PTY LTD{"\n"}
-          {deedDate}
-        </Text>
-      </View>
+        {/* Right side - Recipient signature */}
+        <View style={{ width: '45%' }}>
+          <Text style={styles.paragraph}>
+            <Text style={styles.bold}>Signed by {repName}</Text>
+            {"\n"}
+            as authorised representative of{" "}
+            <Text style={styles.bold}>{companyName}</Text>
+          </Text>
 
-      <Text style={styles.paragraph}>
-        <Text style={styles.bold}>Signed by {repName}</Text>
-        {"\n"}
-        as authorised representative of{" "}
-        <Text style={styles.bold}>{companyName}</Text>
-      </Text>
-
-      <View style={styles.signatureBox}>
-        <Image src={signatureBase64} style={styles.signatureImage} />
-        <Text style={{ marginTop: 10, fontSize: 10 }}>
-          <Text style={styles.bold}>Date:</Text> {deedDate}
-        </Text>
+          <View style={styles.signatureBox}>
+            <Image src={signatureBase64} style={styles.signatureImage} />
+            <Text style={{ marginTop: 10, fontSize: 10 }}>
+              <Text style={styles.bold}>Date:</Text> {deedDate}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View
