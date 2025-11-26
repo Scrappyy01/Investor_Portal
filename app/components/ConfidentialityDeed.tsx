@@ -466,8 +466,7 @@ export default function ConfidentialityDeed({
 
       <p className="mb-2 font-semibold">Disclosing Party</p>
       <p className="mb-1">
-        Load Link Australia Pty Limited & AJK ENGINES PTY LIMITED & Fortis
-        Fundamenta Pty Ltd atf the Fortis Fundamenta Trust
+        Load Link Australia Pty Limited & AJK ENGINES PTY LIMITED 
       </p>
       <p className="mb-1">
         Unit 44/211 Brisbane Road Biggera Waters, Queensland 4216
