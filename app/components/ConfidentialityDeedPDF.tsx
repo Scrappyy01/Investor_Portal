@@ -742,7 +742,7 @@ const ConfidentialityDeedPDF: React.FC<ConfidentialityDeedPDFProps> = ({
           </View>
 
           <Text style={styles.paragraph}>SIGNED SEALED AND DELIVERED</Text>
-          <Text style={styles.paragraph}>by AJK Engines PTY LTD</Text>
+          <Text style={styles.paragraph}>by Load Link Australia PTY LTD & AJK Engines PTY LTD</Text>
         </View>
 
         {/* Right side - Recipient signature */}
