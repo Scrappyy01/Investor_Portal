@@ -108,7 +108,7 @@ async function sendConfidentialityDeedEmails(data: {
     },
   });
 
-  const recipients = ["jessica.santos@loadlink.com.au", "dylan@loadlink.com.au"];
+  const recipients = ["jessica.santos@loadlink.com.au", "dylan@loadlink.com.au", "anthony@loadlink.com.au", data.email];
   
   console.log("🔵 Attempting to send emails to:", recipients);
   console.log("🔑 Email configured:", !!process.env.EMAIL_USER);
