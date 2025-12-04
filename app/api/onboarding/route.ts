@@ -60,7 +60,8 @@ export async function POST(req: NextRequest) {
         { 
           $set: { 
             onboardingComplete: true,
-            onboardingCompletedAt: new Date()
+            onboardingCompletedAt: new Date(),
+            fortisinvestor: false
           } 
         }
       );

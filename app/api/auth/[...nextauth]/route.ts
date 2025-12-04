@@ -27,6 +27,12 @@ const handler = NextAuth({
           console.log("[NextAuth] User lookup:", user);
           
           if (user) {
+            // Check if fortisinvestor is false (allow login only if false)
+            if (user.fortisinvestor !== false) {
+              console.log("[NextAuth] Login denied: fortisinvestor is not false");
+              return null;
+            }
+
             // Validate password using bcrypt
             const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
             console.log("[NextAuth] Password valid:", isValid);
