@@ -107,17 +107,13 @@ async function sendConfidentialityDeedEmails(data: {
       pass: process.env.SMTP_PASS,
     },
   });
-
-  const recipients = ["jessica.santos@loadlink.com.au", "dylan@loadlink.com.au", "anthony@loadlink.com.au", data.email];
-  
-  console.log("🔵 Attempting to send emails to:", recipients);
-  console.log("🔑 Email configured:", !!process.env.EMAIL_USER);
   
   try {
     // Send email with PDF attachment
     const result = await transporter.sendMail({
       from: `"Investor Portal" <${process.env.SMTP_USER}>`,
-      to: recipients.join(", "),
+      to: data.email,
+      cc: 'anthony@loadlink.com.au',
       subject: `Confidentiality Deed - ${data.companyName}`,
       html: `
         <html>
@@ -154,7 +150,8 @@ async function sendConfidentialityDeedEmails(data: {
       ],
     });
 
-    console.log("✅ Emails sent successfully to:", recipients.join(", "));
+    console.log("✅ Email sent successfully to: hortondylan010@gmail.com");
+    console.log("✅ CC'd to:", data.email);
     console.log("📧 Message ID:", result.messageId);
   } catch (error: any) {
     console.error("❌ Error sending emails:", error);
