@@ -210,7 +210,7 @@ export default function LoginPage() {
                           setInterestSuccess(false);
                           setView('register-interest');
                         }}
-                        className="w-full flex justify-center cursor-pointer items-center py-4 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-[#bb964c] hover:bg-[#a0874a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb964c] transition duration-150 ease-in-out"
+                        className="w-full flex justify-center cursor-pointer items-center py-4 px-6 border-2 border-black rounded-lg shadow-sm text-base font-medium text-white bg-[#bb964c] hover:bg-[#a0874a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb964c] transition duration-150 ease-in-out"
                       >
                         Register your interest
                       </button>
